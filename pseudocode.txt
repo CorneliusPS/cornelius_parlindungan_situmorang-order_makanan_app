@@ -1,0 +1,32 @@
+PROGRAM OrderMakanan
+
+READ AND WRITE "lokasiUser" with string
+STORE "lokasiUser" with "Medan"
+
+READ AND WRITE "listMakanan" with array
+STORE "listMakanan with" [{ idMakanan: '1', nama: ''Soto Medan', stokMakanan : 100, harga: 10000, ..... }]
+    STORE every listMakanan in ... with
+        idMakanan with any string
+        nama with any string
+        stokMakanan with any number
+        harga with any number
+
+READ AND WRITE "menuTersedia" with array
+FOR "i" from 0 in "listMakanan"
+    IF "listMakanan"["i"]."stok" > 0
+        STORE "listMakanan" with "listMakanan" combined with "listMakanan"["i"] // push to "listMakanan"
+END FOR
+PRINT "menuTersedia"
+
+READ AND WRITE "pilihanUser" with string
+PROCEDURE CekPilihanUser(idPilihanUser)
+    FOR "i" from 0 in "menuTersedia"
+        IF "menuTersedia"["i"]."idMakanan" = idPilihanUser
+            PRINT "menuTersedia"["i"].price
+            PRINT "silahkan lanjut ke pembayaran"
+    END FOR
+END PROCEDURE
+
+PRINT "Terima kasih telah berkunjung"
+
+END PROGRAM
